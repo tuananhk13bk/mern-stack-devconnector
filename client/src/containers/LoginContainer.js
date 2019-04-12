@@ -2,8 +2,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import {
-  changeInputEmail,
-  changeInputPassword
+  changeLoginInputEmail,
+  changeLoginInputPassword
 } from "../actions/login/loginAction";
 
 import Login from "../components/Auth/Login";
@@ -19,8 +19,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      changeInputEmail,
-      changeInputPassword
+      changeLoginInputEmail,
+      changeLoginInputPassword
     },
     dispatch
   );

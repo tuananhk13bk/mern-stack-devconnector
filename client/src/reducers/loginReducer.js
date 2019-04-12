@@ -1,6 +1,6 @@
 import {
-  CHANGE_INPUT_EMAIL,
-  CHANGE_INPUT_PASSWORD
+  CHANGE_LOGIN_INPUT_EMAIL,
+  CHANGE_LOGIN_INPUT_PASSWORD
 } from "../actions/login/loginActionTypes";
 
 const initialState = {
@@ -11,11 +11,11 @@ const initialState = {
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case CHANGE_INPUT_EMAIL:
-      return { ...state, email: payload.email };
+    case CHANGE_LOGIN_INPUT_EMAIL:
+      return { ...state, email: payload };
 
-    case CHANGE_INPUT_PASSWORD:
-      return { ...state, password: payload.password };
+    case CHANGE_LOGIN_INPUT_PASSWORD:
+      return { ...state, password: payload };
 
     default:
       return state;

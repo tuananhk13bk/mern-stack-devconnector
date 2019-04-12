@@ -1,10 +1,9 @@
 import {
-  CHANGE_INPUT_NAME,
-  CHANGE_INPUT_EMAIL,
-  CHANGE_INPUT_PASSWORD,
-  CHANGE_INPUT_PASSWORD2,
-  RECEIVE_ERROR,
-  SUBMIT_REGISTER
+  CHANGE_REGISTER_INPUT_NAME,
+  CHANGE_REGISTER_INPUT_EMAIL,
+  CHANGE_REGISTER_INPUT_PASSWORD,
+  CHANGE_REGISTER_INPUT_PASSWORD2,
+  RECEIVE_ERROR
 } from "../actions/register/registerActionTypes";
 
 const initialState = {
@@ -12,28 +11,26 @@ const initialState = {
   email: "",
   password: "",
   password2: "",
+  newUser: {},
   errors: {}
 };
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case CHANGE_INPUT_NAME:
-      return { ...state, name: payload.name };
+    case CHANGE_REGISTER_INPUT_NAME:
+      return { ...state, name: payload };
 
-    case CHANGE_INPUT_EMAIL:
-      return { ...state, email: payload.email };
+    case CHANGE_REGISTER_INPUT_EMAIL:
+      return { ...state, email: payload };
 
-    case CHANGE_INPUT_PASSWORD:
-      return { ...state, password: payload.password };
+    case CHANGE_REGISTER_INPUT_PASSWORD:
+      return { ...state, password: payload };
 
-    case CHANGE_INPUT_PASSWORD2:
-      return { ...state, password2: payload.password2 };
+    case CHANGE_REGISTER_INPUT_PASSWORD2:
+      return { ...state, password2: payload };
 
     case RECEIVE_ERROR:
-      return { ...state, errors: payload.errors };
-
-    case SUBMIT_REGISTER:
-      return { ...state };
+      return { ...state, errors: payload };
 
     default:
       return state;

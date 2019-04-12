@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import { withRouter } from "react-router-dom";
 import classnames from "classnames";
 
 const Register = ({
@@ -8,12 +8,14 @@ const Register = ({
   password,
   password2,
   errors,
-  
-  changeInputName,
-  changeInputEmail,
-  changeInputPassword,
-  changeInputPassword2,
-  receiveError
+
+  changeRegisterInputName,
+  changeRegisterInputEmail,
+  changeRegisterInputPassword,
+  changeRegisterInputPassword2,
+  registerUser,
+
+  history
 }) => {
   return (
     <div className="register">
@@ -26,15 +28,15 @@ const Register = ({
               noValidate
               onSubmit={event => {
                 event.preventDefault();
-                axios
-                  .post("/apis/users/register", {
+                registerUser(
+                  {
                     name,
                     email,
                     password,
                     password2
-                  })
-                  .then(res => console.log(res.data))
-                  .catch(err => receiveError({ errors: err.response.data }));
+                  },
+                  history
+                );
               }}
             >
               <div className="form-group">
@@ -47,7 +49,7 @@ const Register = ({
                   name="name"
                   value={name}
                   onChange={event =>
-                    changeInputName({ name: event.target.value })
+                    changeRegisterInputName(event.target.value)
                   }
                 />
                 {/* IF (errors.name !== undefined) return <div>...</div> */}
@@ -65,7 +67,7 @@ const Register = ({
                   name="email"
                   value={email}
                   onChange={event =>
-                    changeInputEmail({ email: event.target.value })
+                    changeRegisterInputEmail(event.target.value)
                   }
                 />
                 {errors.email && (
@@ -86,7 +88,7 @@ const Register = ({
                   name="password"
                   value={password}
                   onChange={event =>
-                    changeInputPassword({ password: event.target.value })
+                    changeRegisterInputPassword(event.target.value)
                   }
                 />
                 {errors.password && (
@@ -103,7 +105,7 @@ const Register = ({
                   name="password2"
                   value={password2}
                   onChange={event =>
-                    changeInputPassword2({ password2: event.target.value })
+                    changeRegisterInputPassword2(event.target.value)
                   }
                 />
                 {errors.password2 && (
@@ -119,4 +121,4 @@ const Register = ({
   );
 };
 
-export default Register;
+export default withRouter(Register);

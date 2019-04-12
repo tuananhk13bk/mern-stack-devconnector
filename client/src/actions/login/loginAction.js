@@ -1,11 +1,14 @@
-import { CHANGE_INPUT_EMAIL, CHANGE_INPUT_PASSWORD } from "./loginActionTypes";
+import {
+  CHANGE_LOGIN_INPUT_EMAIL,
+  CHANGE_LOGIN_INPUT_PASSWORD
+} from "./loginActionTypes";
 
-export const changeInputEmail = payload => ({
-  type: CHANGE_INPUT_EMAIL,
+export const changeLoginInputEmail = payload => ({
+  type: CHANGE_LOGIN_INPUT_EMAIL,
   payload
 });
 
-export const changeInputPassword = payload => ({
-  type: CHANGE_INPUT_PASSWORD,
+export const changeLoginInputPassword = payload => ({
+  type: CHANGE_LOGIN_INPUT_PASSWORD,
   payload
 });

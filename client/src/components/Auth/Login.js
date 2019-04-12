@@ -1,6 +1,11 @@
 import React from "react";
 
-const Login = ({ email, password, changeInputEmail, changeInputPassword }) => {
+const Login = ({
+  email,
+  password,
+  changeLoginInputEmail,
+  changeLoginInputPassword
+}) => {
   return (
     <div className="login">
       <div className="container">
@@ -23,7 +28,7 @@ const Login = ({ email, password, changeInputEmail, changeInputPassword }) => {
                   name="email"
                   value={email}
                   onChange={event =>
-                    changeInputEmail({ email: event.target.value })
+                    changeLoginInputEmail({ email: event.target.value })
                   }
                   required
                 />
@@ -36,7 +41,7 @@ const Login = ({ email, password, changeInputEmail, changeInputPassword }) => {
                   name="password"
                   value={password}
                   onChange={event =>
-                    changeInputPassword({ password: event.target.value })
+                    changeLoginInputPassword({ password: event.target.value })
                   }
                   required
                 />

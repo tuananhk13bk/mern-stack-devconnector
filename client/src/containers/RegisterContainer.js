@@ -2,11 +2,12 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import {
-  changeInputName,
-  changeInputEmail,
-  changeInputPassword,
-  changeInputPassword2,
-  receiveError
+  changeRegisterInputName,
+  changeRegisterInputEmail,
+  changeRegisterInputPassword,
+  changeRegisterInputPassword2,
+  receiveError,
+  registerUser
 } from "../actions/register/registerAction";
 
 import Register from "../components/Auth/Register";
@@ -25,11 +26,12 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      changeInputName,
-      changeInputEmail,
-      changeInputPassword,
-      changeInputPassword2,
-      receiveError
+      changeRegisterInputName,
+      changeRegisterInputEmail,
+      changeRegisterInputPassword,
+      changeRegisterInputPassword2,
+      receiveError,
+      registerUser
     },
     dispatch
   );
