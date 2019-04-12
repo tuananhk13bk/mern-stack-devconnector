@@ -1,12 +1,21 @@
 const express = require('express')
 const mongoose = require('mongoose')
-
+const bodyParser = require('body-parser')
+const passport = require('passport')
 // Load routes
-const users = require('./routes/apis/users')
-const profile = require('./routes/apis/profile')
-const posts = require('./routes/apis/posts')
+const users = require('./routes/apis/users/users')
+const profiles = require('./routes/apis/profiles/profiles')
+const posts = require('./routes/apis/posts/posts')
 
 const app = express()
+
+// middleware
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+// passport middleware
+app.use(passport.initialize())
+// passport config
+require('./config/passport')(passport)
 
 // DB config
 const db = require('./config/keys').mongoURI
@@ -21,8 +30,8 @@ mongoose
 
   // Use routes
   app.use('/apis/users', users)
-  app.use('/apis/profile', profile)
-  app.use('/apis/posts/', posts)
+  app.use('/apis/profiles', profiles)
+  app.use('/apis/posts', posts)
 
   const port = process.env.PORT || 5000
 
