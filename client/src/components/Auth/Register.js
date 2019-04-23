@@ -1,124 +1,125 @@
-import React from "react";
 import { withRouter } from "react-router-dom";
-import classnames from "classnames";
+import Input from "../Input";
 
-const Register = ({
-  name,
-  email,
-  password,
-  password2,
-  errors,
+import React, { Component } from "react";
 
-  changeRegisterInputName,
-  changeRegisterInputEmail,
-  changeRegisterInputPassword,
-  changeRegisterInputPassword2,
-  registerUser,
+class Register extends Component {
+  componentDidMount() {
+    const { isAuthenticated, history } = this.props;
+    if (isAuthenticated) history.push("/dashboard");
+  }
 
-  history
-}) => {
-  return (
-    <div className="register">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-8 m-auto">
-            <h1 className="display-4 text-center">Sign Up</h1>
-            <p className="lead text-center">Create your DevConnector account</p>
-            <form
-              noValidate
-              onSubmit={event => {
-                event.preventDefault();
-                registerUser(
-                  {
-                    name,
-                    email,
-                    password,
-                    password2
-                  },
-                  history
-                );
-              }}
-            >
-              <div className="form-group">
-                <input
-                  type="text"
-                  className={classnames("form-control form-control-lg", {
-                    "is-invalid": errors.name
-                  })}
-                  placeholder="Name"
-                  name="name"
-                  value={name}
-                  onChange={event =>
-                    changeRegisterInputName(event.target.value)
-                  }
-                />
-                {/* IF (errors.name !== undefined) return <div>...</div> */}
-                {errors.name && (
-                  <div className="invalid-feedback">{errors.name}</div>
-                )}
+  inputList = () => {
+    const {
+      name,
+      email,
+      password,
+      password2,
+      errors,
+
+      changeRegisterInputName,
+      changeRegisterInputEmail,
+      changeRegisterInputPassword,
+      changeRegisterInputPassword2
+    } = this.props;
+    return [
+      {
+        type: "text",
+        error: errors.name,
+        placeholder: "Name",
+        name: "name",
+        value: name,
+        onChange: changeRegisterInputName
+      },
+      {
+        type: "email",
+        error: errors.email,
+        placeholder: "Email",
+        name: "email",
+        value: email,
+        onChange: changeRegisterInputEmail,
+        info:
+          "This site uses Gravatar so if you want a profile image, use a Gravatar email"
+      },
+      {
+        type: "password",
+        error: errors.password,
+        placeholder: "Password",
+        name: "password",
+        value: password,
+        onChange: changeRegisterInputPassword
+      },
+      {
+        type: "password",
+        error: errors.password2,
+        placeholder: "Confirm Password",
+        name: "password2",
+        value: password2,
+        onChange: changeRegisterInputPassword2
+      }
+    ];
+  };
+
+  render() {
+    const {
+      name,
+      email,
+      password,
+      password2,
+
+      registerUser,
+
+      history
+    } = this.props;
+    return (
+      <div className="register d-flex flex-column justify-content-center">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-5 offset-md-7">
+              <div className="card p-4">
+                <h1 className="display-4 text-center">Sign Up</h1>
+                <p className="lead text-center">
+                  Create your DevConnector account
+                </p>
+                <form
+                  noValidate
+                  onSubmit={event => {
+                    event.preventDefault();
+                    registerUser(
+                      {
+                        name,
+                        email,
+                        password,
+                        password2
+                      },
+                      history
+                    );
+                  }}
+                >
+                  {this.inputList().map(item => (
+                    <Input
+                      key={item.name}
+                      type={item.type}
+                      error={item.error}
+                      placeholder={item.placeholder}
+                      name={item.name}
+                      value={item.value}
+                      onChange={item.onChange}
+                      info={item.info}
+                    />
+                  ))}
+                  <input
+                    type="submit"
+                    className="btn btn-info btn-block mt-4"
+                  />
+                </form>
               </div>
-              <div className="form-group">
-                <input
-                  type="email"
-                  className={classnames("form-control form-control-lg", {
-                    "is-invalid": errors.email
-                  })}
-                  placeholder="Email Address"
-                  name="email"
-                  value={email}
-                  onChange={event =>
-                    changeRegisterInputEmail(event.target.value)
-                  }
-                />
-                {errors.email && (
-                  <div className="invalid-feedback">{errors.email}</div>
-                )}
-                <small className="form-text text-muted">
-                  This site uses Gravatar so if you want a profile image, use a
-                  Gravatar email
-                </small>
-              </div>
-              <div className="form-group">
-                <input
-                  type="password"
-                  className={classnames("form-control form-control-lg", {
-                    "is-invalid": errors.password
-                  })}
-                  placeholder="Password"
-                  name="password"
-                  value={password}
-                  onChange={event =>
-                    changeRegisterInputPassword(event.target.value)
-                  }
-                />
-                {errors.password && (
-                  <div className="invalid-feedback">{errors.password}</div>
-                )}
-              </div>
-              <div className="form-group">
-                <input
-                  type="password"
-                  className={classnames("form-control form-control-lg", {
-                    "is-invalid": errors.password2
-                  })}
-                  placeholder="Confirm Password"
-                  name="password2"
-                  value={password2}
-                  onChange={event =>
-                    changeRegisterInputPassword2(event.target.value)
-                  }
-                />
-                {errors.password2 && (
-                  <div className="invalid-feedback">{errors.password2}</div>
-                )}
-              </div>
-              <input type="submit" className="btn btn-info btn-block mt-4" />
-            </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default withRouter(Register);

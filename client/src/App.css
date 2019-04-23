@@ -4,12 +4,12 @@ img {
 
 .landing {
   position: relative;
-  background: url('./img/showcase.jpg') no-repeat;
+  background: url("./img/showcase.jpg") no-repeat;
   background-size: cover;
   background-position: center;
-  height: 100vh;
-  margin-top: -24px;
-  margin-bottom: -50px;
+  /* margin-top: -24px;
+  margin-bottom: -50px; */
+  min-height: calc(100vh - 56px);
 }
 
 .landing-inner {
@@ -36,4 +36,29 @@ img {
 
 .form-control::placeholder {
   color: #bbb !important;
+}
+
+/* #social-network-input .input-group-prepend {
+  width: 50px !important;
+} */
+
+.register,
+.login,
+.create-profile,
+.not-found,
+.add-experience,
+.dashboard {
+  min-height: calc(100vh - 56px - 72px);
+}
+
+.input-group-prepend {
+  width: 50px;
+}
+
+.input-group-text {
+  width: 100%;
+}
+
+.input-group-text i {
+  margin: auto;
 }

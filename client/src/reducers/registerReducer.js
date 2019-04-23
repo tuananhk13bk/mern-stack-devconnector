@@ -3,7 +3,7 @@ import {
   CHANGE_REGISTER_INPUT_EMAIL,
   CHANGE_REGISTER_INPUT_PASSWORD,
   CHANGE_REGISTER_INPUT_PASSWORD2,
-  RECEIVE_ERROR
+  RECEIVE_REGISTER_ERROR
 } from "../actions/register/registerActionTypes";
 
 const initialState = {
@@ -29,7 +29,7 @@ export default (state = initialState, { type, payload }) => {
     case CHANGE_REGISTER_INPUT_PASSWORD2:
       return { ...state, password2: payload };
 
-    case RECEIVE_ERROR:
+    case RECEIVE_REGISTER_ERROR:
       return { ...state, errors: payload };
 
     default:

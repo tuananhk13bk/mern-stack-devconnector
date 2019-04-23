@@ -6,20 +6,21 @@ import {
   changeRegisterInputEmail,
   changeRegisterInputPassword,
   changeRegisterInputPassword2,
-  receiveError,
   registerUser
-} from "../actions/register/registerAction";
+} from "../actions/register/registerActions";
 
 import Register from "../components/Auth/Register";
 
 const mapStateToProps = state => {
   const { name, email, password, password2, errors } = state.registerReducer;
+  const { isAuthenticated } = state.loginReducer;
   return {
     name,
     email,
     password,
     password2,
-    errors
+    errors,
+    isAuthenticated
   };
 };
 
@@ -30,7 +31,6 @@ const mapDispatchToProps = dispatch => {
       changeRegisterInputEmail,
       changeRegisterInputPassword,
       changeRegisterInputPassword2,
-      receiveError,
       registerUser
     },
     dispatch

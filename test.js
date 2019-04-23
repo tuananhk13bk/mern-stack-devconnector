@@ -1,3 +1,3 @@
-let errors = {};
+const x = "aaa            aa";
 
-console.log(errors.name && "hahaha");
+console.log(x.replace(" ", ""));

@@ -1,8 +1,8 @@
-const isEmpty = value => (
+const isEmpty = value =>
   value === undefined ||
   value === null ||
-  (typeof value === 'object' && Object.keys(value)).length === 0 ||
-  (typeof value === 'string' && value === '')
-)
+  (typeof value === "object" && Object.keys(value)).length === 0 ||
+  (typeof value === "array" && value.length === 0) ||
+  (typeof value === "string" && value === "");
 
-module.exports = isEmpty
+module.exports = isEmpty;
