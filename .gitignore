@@ -5,3 +5,5 @@ yarn.lock
 /client/yarn.lock
 
 /.vscode
+
+/config/keys_dev.js
