@@ -6,13 +6,6 @@ import PrependInput from "../PrependInput";
 import { withRouter } from "react-router-dom";
 
 class EditProfile extends Component {
-  componentDidMount() {
-    const { profile, history } = this.props;
-    // on editing, if user reload page, all state will be lost,
-    // so when reload, we push back to dashboard
-    if (!profile) history.push("/dashboard");
-  }
-
   componentWillUnmount() {
     const { clearAllProfileState } = this.props;
     clearAllProfileState();

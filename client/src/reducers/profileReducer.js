@@ -72,14 +72,14 @@ export default (state = initialState, { type, payload }) => {
         skills,
         github,
         bio
-      } = state.profile;
+      } = state.currentUserProfile;
       const {
         twitter,
         facebook,
         linkedin,
         youtube,
         instagram
-      } = state.profile.social;
+      } = state.currentUserProfile.social;
       // convert from array back to string
       // because state is read-only, we must copy it use spread operator
       const stringSkills = [...skills].join(", ");
