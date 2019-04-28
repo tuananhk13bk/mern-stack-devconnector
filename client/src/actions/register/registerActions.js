@@ -4,7 +4,8 @@ import {
   CHANGE_REGISTER_INPUT_EMAIL,
   CHANGE_REGISTER_INPUT_PASSWORD,
   CHANGE_REGISTER_INPUT_PASSWORD2,
-  RECEIVE_REGISTER_ERROR
+  RECEIVE_REGISTER_ERROR,
+  CLEAR_ALL_REGISTER_STATES
 } from "./registerActionTypes";
 
 export const changeRegisterInputName = payload => ({
@@ -38,3 +39,7 @@ export const registerUser = (payload, history) => dispatch => {
       })
     );
 };
+
+export const clearAllRegisterStates = () => ({
+  type: CLEAR_ALL_REGISTER_STATES
+});

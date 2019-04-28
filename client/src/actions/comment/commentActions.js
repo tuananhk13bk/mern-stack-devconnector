@@ -5,7 +5,8 @@ import {
   DELETE_COMMENT,
   RECEIVE_COMMENT_ERRORS,
   CHANGE_COMMENT_CONTENT_TO_ADD,
-  COMMENT_LOADING
+  COMMENT_LOADING,
+  CLEAR_COMMENT_FORM
 } from "./commentActionTypes";
 
 export const setCommentLoading = () => ({
@@ -15,12 +16,13 @@ export const setCommentLoading = () => ({
 export const addComment = (postId, postData) => dispatch => {
   axios
     .put(`/api/post/comment/${postId}`, postData)
-    .then(res =>
+    .then(res => {
+      dispatch(clearCommentForm());
       dispatch({
         type: ADD_COMMENT,
         payload: res.data.comments
-      })
-    )
+      });
+    })
     .catch(err =>
       dispatch({ type: RECEIVE_COMMENT_ERRORS, payload: err.response.data })
     );
@@ -43,4 +45,8 @@ export const deleteComment = (postId, commentId) => dispatch => {
 export const changeCommentContentToAdd = text => ({
   type: CHANGE_COMMENT_CONTENT_TO_ADD,
   payload: text
+});
+
+export const clearCommentForm = () => ({
+  type: CLEAR_COMMENT_FORM
 });

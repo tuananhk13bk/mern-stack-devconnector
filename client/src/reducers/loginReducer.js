@@ -3,7 +3,7 @@ import {
   CHANGE_LOGIN_INPUT_PASSWORD,
   RECEIVE_LOGIN_ERROR,
   SET_CURRENT_USER,
-  CLEAR_ALL_LOGIN_STATE
+  CLEAR_ALL_LOGIN_STATES
 } from "../actions/login/loginActionTypes";
 import isEmpty from "../utils/isEmpty";
 
@@ -29,7 +29,7 @@ export default (state = initialState, { type, payload }) => {
     case RECEIVE_LOGIN_ERROR:
       return { ...state, errors: payload };
 
-    case CLEAR_ALL_LOGIN_STATE:
+    case CLEAR_ALL_LOGIN_STATES:
       return initialState;
 
     default:

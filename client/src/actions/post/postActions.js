@@ -9,7 +9,8 @@ import {
   CHANGE_POST_CONTENT_TO_ADD,
   ADD_LIKE,
   ADD_UNLIKE,
-  GET_POST
+  GET_POST,
+  CLEAR_POST_FORM
 } from "./postActionTypes";
 
 export const getAllPosts = () => dispatch => {
@@ -31,10 +32,11 @@ export const getPost = postId => dispatch => {
 export const addPost = postData => dispatch => {
   axios
     .post("/api/post", postData)
-    .then(res =>
+    .then(res => {
       // because we dont want to reload page to getback postId, we need to add the id return back from server to latest post that show on page as state
-      dispatch({ type: ADD_POST, payload: res.data })
-    )
+      dispatch({ type: ADD_POST, payload: res.data });
+      dispatch(clearPostForm());
+    })
     .catch(err =>
       dispatch({ type: RECEIVE_POST_ERRORS, payload: err.response.data })
     );
@@ -84,4 +86,8 @@ export const setPostLoading = () => ({
 export const changePostContentToAdd = content => ({
   type: CHANGE_POST_CONTENT_TO_ADD,
   payload: content
+});
+
+export const clearPostForm = () => ({
+  type: CLEAR_POST_FORM
 });

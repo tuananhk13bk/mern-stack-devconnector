@@ -3,7 +3,7 @@ import {
   CHANGE_LOGIN_INPUT_PASSWORD,
   RECEIVE_LOGIN_ERROR,
   SET_CURRENT_USER,
-  CLEAR_ALL_LOGIN_STATE
+  CLEAR_ALL_LOGIN_STATES
 } from "./loginActionTypes";
 import setAuthToken from "../../utils/setAuthToken";
 import axios from "axios";
@@ -21,6 +21,7 @@ export const changeLoginInputPassword = payload => ({
 
 // Login - Get User token
 export const loginUser = (payload, history) => dispatch => {
+  dispatch(clearAllLoginStates());
   axios
     .post("/api/user/login", payload)
     .then(res => {
@@ -61,6 +62,6 @@ export const logoutUser = history => dispatch => {
   if (history) history.push("/");
 };
 
-export const clearAllLoginState = () => ({
-  type: CLEAR_ALL_LOGIN_STATE
+export const clearAllLoginStates = () => ({
+  type: CLEAR_ALL_LOGIN_STATES
 });

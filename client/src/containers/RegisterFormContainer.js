@@ -6,7 +6,8 @@ import {
   changeRegisterInputEmail,
   changeRegisterInputPassword,
   changeRegisterInputPassword2,
-  registerUser
+  registerUser,
+  clearAllRegisterStates
 } from "../actions/register/registerActions";
 
 import RegisterForm from "../components/Auth/RegisterForm";
@@ -31,7 +32,8 @@ const mapDispatchToProps = dispatch => {
       changeRegisterInputEmail,
       changeRegisterInputPassword,
       changeRegisterInputPassword2,
-      registerUser
+      registerUser,
+      clearAllRegisterStates
     },
     dispatch
   );

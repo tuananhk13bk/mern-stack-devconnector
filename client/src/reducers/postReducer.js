@@ -9,7 +9,8 @@ import {
   RECEIVE_POST_ERRORS,
   CHANGE_POST_CONTENT_TO_ADD,
   ADD_UNLIKE,
-  GET_POST
+  GET_POST,
+  CLEAR_POST_FORM
 } from "../actions/post/postActionTypes";
 
 import {
@@ -17,7 +18,8 @@ import {
   DELETE_COMMENT,
   RECEIVE_COMMENT_ERRORS,
   CHANGE_COMMENT_CONTENT_TO_ADD,
-  COMMENT_LOADING
+  COMMENT_LOADING,
+  CLEAR_COMMENT_FORM
 } from "../actions/comment/commentActionTypes";
 
 const initialState = {
@@ -97,6 +99,12 @@ export default (state = initialState, { type, payload }) => {
 
     case RECEIVE_COMMENT_ERRORS:
       return { ...state, commentErrors: payload };
+
+    case CLEAR_POST_FORM:
+      return { ...state, text: "", errors: {} };
+
+    case CLEAR_COMMENT_FORM:
+      return { ...state, commentText: "", commentErrors: {} };
 
     default:
       return state;

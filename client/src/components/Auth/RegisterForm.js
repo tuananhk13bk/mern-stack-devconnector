@@ -3,10 +3,14 @@ import Input from "../Input";
 
 import React, { Component } from "react";
 
-class Register extends Component {
+class RegisterForm extends Component {
   componentDidMount() {
     const { isAuthenticated, history } = this.props;
     if (isAuthenticated) history.push("/dashboard");
+  }
+
+  componentWillUnmount() {
+    this.props.clearAllRegisterStates();
   }
 
   inputList = () => {
@@ -112,4 +116,4 @@ class Register extends Component {
   }
 }
 
-export default withRouter(Register);
+export default withRouter(RegisterForm);
