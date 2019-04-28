@@ -11,6 +11,11 @@ const Navbar = ({
   const authLinks = (
     <ul className="navbar-nav ml-auto">
       <li className="nav-item">
+        <Link to="/feed" className="nav-link">
+          Post Feed
+        </Link>
+      </li>
+      <li className="nav-item">
         <Link to="/dashboard" className="nav-link">
           Dashboard
         </Link>
@@ -69,7 +74,7 @@ const Navbar = ({
         <div className="collapse navbar-collapse" id="mobile-nav">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
-              <Link className="nav-link" to="/profiles">
+              <Link className="nav-link" to="/all-profiles">
                 Developers
               </Link>
             </li>

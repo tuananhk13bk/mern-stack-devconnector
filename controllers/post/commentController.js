@@ -2,21 +2,23 @@ const Post = require("../../models/Post");
 const validateCommentInput = require("../../validation/comment");
 
 const postAddCommentToPost = (req, res) => {
+  console.log(req.params);
+  console.log(req.body);
   const { errors, isValid } = validateCommentInput(req.body);
   // check validation
   if (!isValid) {
     return res.status(400).json(errors);
   }
-  const { id } = req.params;
-  const { text, name } = req.body;
-  const { avatar, user } = req.user;
-  Post.findById(id)
+  const { postId } = req.params;
+  const { text } = req.body;
+  const { id, name, avatar } = req.user;
+  Post.findById(postId)
     .then(post => {
       const newComment = {
         text,
         name,
         avatar,
-        user
+        user: id
       };
 
       // Add to comment array

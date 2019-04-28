@@ -15,7 +15,7 @@ const initialState = {
   fieldOfStudy: "",
   from: "",
   to: "",
-  current: "",
+  current: false,
   description: "",
   errors: {}
 };

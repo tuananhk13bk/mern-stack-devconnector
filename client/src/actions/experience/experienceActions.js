@@ -10,7 +10,7 @@ import {
   CHANGE_EXPERIENCE_INPUT_DESCRIPTION,
   RECEIVE_EXPERIENCE_ERRORS
 } from "./experienceActionTypes";
-import { GET_PROFILE } from "../profile/profileActionTypes";
+import { GET_PROFILE_BY } from "../profile/profileActionTypes";
 
 export const addExperience = (payload, history) => dispatch => {
   axios
@@ -24,7 +24,7 @@ export const addExperience = (payload, history) => dispatch => {
 export const deleteExperience = payload => dispatch => {
   axios
     .delete(`/api/profile/experience/${payload}`)
-    .then(res => dispatch({ type: GET_PROFILE, payload: res.data }))
+    .then(res => dispatch({ type: GET_PROFILE_BY, payload: res.data }))
     .catch(err =>
       dispatch({ type: RECEIVE_EXPERIENCE_ERRORS, payload: err.response.data })
     );

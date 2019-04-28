@@ -72,51 +72,41 @@ class Register extends Component {
       history
     } = this.props;
     return (
-      <div className="register d-flex flex-column justify-content-center">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-5 offset-md-7">
-              <div className="card p-4">
-                <h1 className="display-4 text-center">Sign Up</h1>
-                <p className="lead text-center">
-                  Create your DevConnector account
-                </p>
-                <form
-                  noValidate
-                  onSubmit={event => {
-                    event.preventDefault();
-                    registerUser(
-                      {
-                        name,
-                        email,
-                        password,
-                        password2
-                      },
-                      history
-                    );
-                  }}
-                >
-                  {this.inputList().map(item => (
-                    <Input
-                      key={item.name}
-                      type={item.type}
-                      error={item.error}
-                      placeholder={item.placeholder}
-                      name={item.name}
-                      value={item.value}
-                      onChange={item.onChange}
-                      info={item.info}
-                    />
-                  ))}
-                  <input
-                    type="submit"
-                    className="btn btn-info btn-block mt-4"
-                  />
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className="card p-4 bg-dark text-white">
+        <h1 className="display-4 text-center">Sign Up</h1>
+        <p className="lead text-center">Create your DevConnector account</p>
+        <form
+          noValidate
+          onSubmit={event => {
+            event.preventDefault();
+            registerUser(
+              {
+                name,
+                email,
+                password,
+                password2
+              },
+              history
+            );
+          }}
+        >
+          {this.inputList().map(item => (
+            <Input
+              key={item.name}
+              type={item.type}
+              error={item.error}
+              placeholder={item.placeholder}
+              name={item.name}
+              value={item.value}
+              onChange={item.onChange}
+              info={item.info}
+            />
+          ))}
+          <input
+            type="submit"
+            className="btn btn-outline-info btn-block mt-4"
+          />
+        </form>
       </div>
     );
   }

@@ -1,3 +1,11 @@
-const x = "aaa            aa";
+const arr = [
+  {
+    id: 1
+  },
+  { id: 2 },
+  { id: 3 },
+  { id: 4 }
+];
 
-console.log(x.replace(" ", ""));
+const x = arr.map(item => item.id).indexOf(4);
+console.log(x);

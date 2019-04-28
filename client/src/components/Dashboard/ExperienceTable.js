@@ -30,10 +30,10 @@ class ExperienceTable extends Component {
         <table className="table">
           <thead>
             <tr>
-              <th>Company</th>
-              <th>Title</th>
-              <th>Years</th>
-              <th />
+              <th className="w-25">Company</th>
+              <th className="w-25">Title</th>
+              <th className="w-25">Years</th>
+              <th className="w-25" />
             </tr>
           </thead>
           <tbody>{this.experienceTable()}</tbody>

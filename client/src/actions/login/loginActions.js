@@ -58,7 +58,7 @@ export const logoutUser = history => dispatch => {
   // set current user to {} which will set isAuthenticated to false
   dispatch(setCurrentUser({}));
   // back to home page
-  history.push("/");
+  if (history) history.push("/");
 };
 
 export const clearAllLoginState = () => ({

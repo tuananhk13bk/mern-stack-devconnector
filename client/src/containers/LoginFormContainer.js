@@ -6,7 +6,7 @@ import {
   loginUser
 } from "../actions/login/loginActions";
 
-import Login from "../components/Auth/Login";
+import LoginForm from "../components/Auth/LoginForm";
 
 const mapStateToProps = state => {
   const { email, password, errors, isAuthenticated } = state.loginReducer;
@@ -27,4 +27,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Login);
+)(LoginForm);

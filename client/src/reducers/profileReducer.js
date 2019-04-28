@@ -1,6 +1,6 @@
 import {
   GET_ALL_PROFILES,
-  GET_PROFILE,
+  GET_PROFILE_BY,
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
   CLICK_EDIT_PROFILE,
@@ -18,12 +18,13 @@ import {
   CHANGE_PROFILE_YOUTUBE_INPUT,
   CHANGE_PROFILE_INSTAGRAM_INPUT,
   RECEIVE_PROFILE_ERRORS,
-  CLEAR_ALL_PROFILE_STATE
+  CLEAR_ALL_PROFILE_STATE,
+  GET_CURRENT_USER_PROFILE
 } from "../actions/profile/profileActionTypes";
 
 const initialState = {
   editMode: false,
-  allProfiles: null,
+  currentUserProfile: null,
   profile: null,
   allProfiles: null,
   loading: false,
@@ -52,7 +53,10 @@ export default (state = initialState, { type, payload }) => {
     case GET_ALL_PROFILES:
       return { ...state, allProfiles: payload, loading: false };
 
-    case GET_PROFILE:
+    case GET_CURRENT_USER_PROFILE:
+      return { ...state, currentUserProfile: payload, loading: false };
+
+    case GET_PROFILE_BY:
       return { ...state, profile: payload, loading: false };
 
     case CLEAR_CURRENT_PROFILE:

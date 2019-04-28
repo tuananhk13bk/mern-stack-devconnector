@@ -6,18 +6,20 @@ import store from "./store";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 import NotFound from "./components/NotFound";
-import Footer from "./components/Layout/Footer";
-import LandingContainer from "./containers/LandingContainer";
-import LoginContainer from "./containers/LoginContainer";
-import RegisterContainer from "./containers/RegisterContainer";
-import NavbarContainer from "./containers/NavbarContainer";
-import DashboardContainer from "./containers/DashboardContainer";
+import HomePage from "./pages/HomePage";
+import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
+import AllProfilesPage from "./pages/AllProfilesPage";
+import ProfileDetailPage from "./pages/ProfileDetailPage";
+import DashboardPage from "./pages/DashboardPage";
+import PostFeedPage from "./pages/PostFeedPage";
+import PostDetailPage from "./pages/PostDetailPage";
 import PrivateRouteContainer from "./containers/PrivateRouteContainer";
 import EditProfileContainer from "./containers/EditProfileContainer";
 import AddExperienceContainer from "./containers/AddExperienceContainer";
 import AddEducationContainer from "./containers/AddEducationContainer";
 import { clearCurrentProfile } from "./actions/profile/profileActions";
-import ProfilesContainer from "./containers/ProfilesContainer";
+import Layout from "./components/Layout/Layout";
 
 // check for token
 if (localStorage.jwtToken) {
@@ -43,18 +45,22 @@ export default class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="App">
-          <NavbarContainer />
+        <Layout>
           <Switch>
-            <Route exact path="/" component={LandingContainer} />
+            <Route exact path="/" component={HomePage} />
             {/* <div className="container"> */}
-            <Route exact path="/register" component={RegisterContainer} />
-            <Route exact path="/login" component={LoginContainer} />
-            <Route exact path="/profiles" component={ProfilesContainer} />
+            <Route exact path="/register" component={RegisterPage} />
+            <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/all-profiles" component={AllProfilesPage} />
+            <PrivateRouteContainer
+              exact
+              path="/profile/user/:userId"
+              component={ProfileDetailPage}
+            />
             <PrivateRouteContainer
               exact
               path="/dashboard"
-              component={DashboardContainer}
+              component={DashboardPage}
             />
             <PrivateRouteContainer
               exact
@@ -76,11 +82,21 @@ export default class App extends Component {
               path="/add-education"
               component={AddEducationContainer}
             />
+            <PrivateRouteContainer
+              exact
+              path="/feed"
+              component={PostFeedPage}
+            />
+            <PrivateRouteContainer
+              exact
+              path="/post/:postId"
+              component={PostDetailPage}
+            />
+            <Route exact path="/not-found" component={NotFound} />
             <Route component={NotFound} />
             {/* </div> */}
           </Switch>
-          <Footer />
-        </div>
+        </Layout>
       </BrowserRouter>
     );
   }

@@ -9,11 +9,11 @@ import { deleteExperience } from "../actions/experience/experienceActions";
 import { deleteEducation } from "../actions/education/educationActions";
 
 const mapStateToProps = state => {
-  const { editMode, profile, loading } = state.profileReducer;
+  const { editMode, currentUserProfile, loading } = state.profileReducer;
   const { user } = state.loginReducer;
   return {
     editMode,
-    profile,
+    currentUserProfile,
     loading,
     user
   };

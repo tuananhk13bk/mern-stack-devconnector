@@ -53,7 +53,6 @@ class EditProfile extends Component {
 
       history
     } = this.props;
-    console.log(this.props);
     const personalInfoInputList = [
       {
         type: "text",
@@ -172,8 +171,8 @@ class EditProfile extends Component {
       { label: "Other", value: "Other" }
     ];
     return (
-      <div className="edit-profile">
-        <div className="container my-4">
+      <div className="edit-profile p-4">
+        <div className="container">
           <h1 className="display-4 text-center">
             {editMode ? "Edit" : "Create"} Your Profile
           </h1>

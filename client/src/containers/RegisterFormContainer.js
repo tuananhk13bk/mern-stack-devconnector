@@ -9,7 +9,7 @@ import {
   registerUser
 } from "../actions/register/registerActions";
 
-import Register from "../components/Auth/Register";
+import RegisterForm from "../components/Auth/RegisterForm";
 
 const mapStateToProps = state => {
   const { name, email, password, password2, errors } = state.registerReducer;
@@ -40,4 +40,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Register);
+)(RegisterForm);

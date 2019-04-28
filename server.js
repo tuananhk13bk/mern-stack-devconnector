@@ -1,12 +1,15 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
+const cors = require("cors");
 
 const app = express();
 
 // middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+app.use(cors());
 // Use routes
 app.use("/api/user", require("./routes/api/user/user"));
 app.use("/api/profile", require("./routes/api/profile/profile"));
@@ -21,7 +24,7 @@ const db = require("./config/keys").mongoURI;
 
 // connect to MongoDB
 mongoose
-  .connect(db, { useNewUrlParser: true })
+  .connect(db, { useNewUrlParser: true, useFindAndModify: true })
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
 

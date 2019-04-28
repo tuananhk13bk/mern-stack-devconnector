@@ -2,6 +2,7 @@ import React from "react";
 import classnames from "classnames";
 
 const Input = ({
+  autoFocus,
   type,
   name,
   placeholder,
@@ -14,6 +15,7 @@ const Input = ({
   return (
     <div className="form-group">
       <input
+        autoFocus={autoFocus ? "autoFocus" : ""}
         className={classnames("form-control form-control-lg", {
           "is-invalid": error
         })}

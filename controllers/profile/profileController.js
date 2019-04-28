@@ -70,23 +70,23 @@ const postCreateProfile = (req, res) => {
     instagram
   } = req.body;
   profileFields.user = id;
-  if (handle) profileFields.handle = handle;
-  if (company) profileFields.company = company;
-  if (website) profileFields.website = website;
-  if (profileLocation) profileFields.profileLocation = profileLocation;
-  if (bio) profileFields.bio = bio;
-  if (status) profileFields.status = status;
-  if (github) profileFields.github = github;
+  profileFields.handle = handle || "";
+  profileFields.company = company || "";
+  profileFields.website = website || "";
+  profileFields.profileLocation = profileLocation || "";
+  profileFields.bio = bio || "";
+  profileFields.status = status || "";
+  profileFields.github = github || "";
 
   // Skills - split into array
-  if (skills) profileFields.skills = skills.replace(/ /g, "").split(",");
+  profileFields.skills = skills.replace(/ /g, "").split(",");
   // Social
   profileFields.social = {};
-  if (youtube) profileFields.social.youtube = youtube;
-  if (twitter) profileFields.social.twitter = twitter;
-  if (facebook) profileFields.social.facebook = facebook;
-  if (linkedin) profileFields.social.linkedin = linkedin;
-  if (instagram) profileFields.social.instagram = instagram;
+  profileFields.social.youtube = youtube || "";
+  profileFields.social.twitter = twitter || "";
+  profileFields.social.facebook = facebook || "";
+  profileFields.social.linkedin = linkedin || "";
+  profileFields.social.instagram = instagram || "";
 
   Profile.findOne({ user: id }).then(profile => {
     if (profile) {

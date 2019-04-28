@@ -30,10 +30,10 @@ class EducationTable extends Component {
         <table className="table">
           <thead>
             <tr>
-              <th>School</th>
-              <th>Degree</th>
-              <th>Years</th>
-              <th />
+              <th className="w-25">School</th>
+              <th className="w-25">Degree</th>
+              <th className="w-25">Years</th>
+              <th className="w-25" />
             </tr>
           </thead>
           <tbody>{this.educationTable()}</tbody>

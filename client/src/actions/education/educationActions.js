@@ -10,7 +10,7 @@ import {
   CHANGE_EDU_INPUT_DESCRIPTION,
   RECEIVE_EDU_ERRORS
 } from "./educationActionTypes";
-import { GET_PROFILE } from "../profile/profileActionTypes";
+import { GET_PROFILE_BY } from "../profile/profileActionTypes";
 
 export const createEdu = (payload, history) => dispatch => {
   axios
@@ -24,7 +24,7 @@ export const createEdu = (payload, history) => dispatch => {
 export const deleteEducation = id => dispatch => {
   axios
     .delete(`/api/profile/education/${id}`)
-    .then(res => dispatch({ type: GET_PROFILE, payload: res.data }))
+    .then(res => dispatch({ type: GET_PROFILE_BY, payload: res.data }))
     .catch(err =>
       dispatch({ type: RECEIVE_EDU_ERRORS, payload: err.response.data })
     );

@@ -9,7 +9,7 @@ const likeController = require("../../../controllers/post/likeController");
 router.post(
   "/:postId",
   passport.authenticate("jwt", { session: false }),
-  likeController.deleteLike
+  likeController.postCreateUnLike
 );
 
 module.exports = router;

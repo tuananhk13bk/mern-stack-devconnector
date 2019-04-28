@@ -1,6 +1,6 @@
 import axios from "axios";
 import {
-  GET_PROFILE,
+  GET_PROFILE_BY,
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
   CLICK_EDIT_PROFILE,
@@ -19,7 +19,8 @@ import {
   CHANGE_PROFILE_YOUTUBE_INPUT,
   RECEIVE_PROFILE_ERRORS,
   CLEAR_ALL_PROFILE_STATE,
-  GET_ALL_PROFILES
+  GET_ALL_PROFILES,
+  GET_CURRENT_USER_PROFILE
 } from "./profileActionTypes";
 import {
   SET_CURRENT_USER,
@@ -44,8 +45,37 @@ export const getCurrentProfile = () => dispatch => {
   dispatch(setProfileLoading());
   axios
     .get("/api/profile/")
-    .then(res => dispatch({ type: GET_PROFILE, payload: res.data }))
-    .catch(err => dispatch({ type: GET_PROFILE, payload: {} }));
+    .then(res =>
+      dispatch({ type: GET_CURRENT_USER_PROFILE, payload: res.data })
+    )
+    .catch(err => dispatch({ type: GET_CURRENT_USER_PROFILE, payload: {} }));
+};
+
+// get profile by handle
+export const getProfileByHandle = (handle, history) => dispatch => {
+  dispatch(setProfileLoading());
+  axios
+    .get(`/api/profile/handle/${handle}`)
+    .then(res => dispatch({ type: GET_PROFILE_BY, payload: res.data }))
+    .catch(err => {
+      dispatch({ type: GET_PROFILE_BY, payload: null });
+      history.push("/not-found");
+    });
+};
+
+// get profile by id
+export const getProfileByUserId = (userId, history) => dispatch => {
+  dispatch(setProfileLoading());
+  axios
+    .get(`/api/profile/user/${userId}`)
+    .then(res => {
+      console.log(res);
+      dispatch({ type: GET_PROFILE_BY, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: GET_PROFILE_BY, payload: null });
+      history.push("/not-found");
+    });
 };
 
 // Create profile
@@ -71,9 +101,11 @@ export const deleteAccount = () => dispatch => {
 };
 
 // profile loading
-export const setProfileLoading = () => ({
-  type: PROFILE_LOADING
-});
+export const setProfileLoading = () => {
+  return {
+    type: PROFILE_LOADING
+  };
+};
 
 export const clickEditProfile = history => dispatch => {
   dispatch({ type: CLICK_EDIT_PROFILE });

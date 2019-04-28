@@ -26,31 +26,34 @@ class Dashboard extends Component {
   dashboardContent = () => {
     const {
       user,
-      profile,
+      currentUserProfile,
       loading,
       deleteExperience,
       deleteEducation
     } = this.props;
-    if (profile === null || loading) {
+    if (currentUserProfile === null || loading) {
       return <Spinner />;
     }
     // check if logged in user has profile data
-    if (Object.keys(profile).length > 0) {
+    if (Object.keys(currentUserProfile).length > 0) {
       return (
         <div>
           <p className="lead text-muted">
-            Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
+            Welcome{" "}
+            <Link to={`/profile/user/${currentUserProfile.user._id}`}>
+              {user.name}
+            </Link>
           </p>
           <ProfileManagement
             onEditProfileClick={this.onEditProfileClick}
             onDeleteClick={this.onDeleteClick}
           />
           <ExperienceTable
-            experience={profile.experience}
+            experience={currentUserProfile.experience}
             deleteExperience={deleteExperience}
           />
           <EducationTable
-            education={profile.education}
+            education={currentUserProfile.education}
             deleteEducation={deleteEducation}
           />
           {/* TODO: add exp and edu */}
@@ -70,18 +73,7 @@ class Dashboard extends Component {
   };
 
   render() {
-    return (
-      <div className="dashboard">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <h1 className="display-4">Dashboard</h1>
-              {this.dashboardContent()}
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+    return this.dashboardContent();
   }
 }
 

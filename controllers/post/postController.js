@@ -23,8 +23,8 @@ const postCreatePost = (req, res) => {
   if (!isValid) {
     return res.status(400).json(errors);
   }
-  const { text, name } = req.body;
-  const { id, avatar } = req.user;
+  const { text } = req.body;
+  const { id, avatar, name } = req.user;
   const newPost = new Post({
     text,
     name,
@@ -41,21 +41,19 @@ const postCreatePost = (req, res) => {
 const deletePost = (req, res) => {
   const { id } = req.user;
   const { postId } = req.params;
-  Profile.findOne({ user: id }).then(profile => {
-    Post.findById(postId)
-      .then(post => {
-        // check for post owner
-        if (post.user.toString() !== id) {
-          return res.status(401).json({ notAuthorized: "User not authorized" });
-        }
+  Post.findById(postId)
+    .then(post => {
+      // check for post owner
+      if (post.user.toString() !== id) {
+        return res.status(401).json({ notAuthorized: "User not authorized" });
+      }
 
-        // delete
-        Post.deleteOne({ postId })
-          .then(() => res.json({ success: true }))
-          .catch(err => res.json({ cantDelete: "Cant not delete this post" }));
-      })
-      .catch(err => res.status(404).json({ postNotFound: "No post found" }));
-  });
+      // delete
+      Post.findByIdAndRemove(postId)
+        .then(post => res.json({ success: true, post }))
+        .catch(err => res.json({ cantDelete: "Cant not delete this post" }));
+    })
+    .catch(err => res.status(404).json({ postNotFound: "No post found" }));
 };
 
 module.exports = {

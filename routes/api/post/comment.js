@@ -6,8 +6,8 @@ const commentController = require("../../../controllers/post/commentController")
 
 // Add comment to post by postId
 // private route
-router.post(
-  "/:id",
+router.put(
+  "/:postId",
   passport.authenticate("jwt", { session: false }),
   commentController.postAddCommentToPost
 );

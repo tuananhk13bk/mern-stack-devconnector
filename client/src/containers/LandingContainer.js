@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Landing from "../components/Layout/Landing";
+import Landing from "../components/Landing";
 
 const mapStateToProps = state => {
   const { isAuthenticated } = state.loginReducer;
