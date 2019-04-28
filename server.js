@@ -11,6 +11,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use(cors());
+
+// Use routes
+app.use("/api/user", require("./routes/api/user/user"));
+app.use("/api/profile", require("./routes/api/profile/profile"));
+app.use("/api/post", require("./routes/api/post/post"));
 // passport middleware
 app.use(passport.initialize());
 // passport config
@@ -23,11 +28,6 @@ mongoose
   .connect(db, { useNewUrlParser: true, useFindAndModify: true })
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
-
-// Use routes
-app.use("/api/user", require("./routes/api/user/user"));
-app.use("/api/profile", require("./routes/api/profile/profile"));
-app.use("/api/post", require("./routes/api/post/post"));
 
 if (process.env.NODE_ENV === "production") {
   // Set static folder
