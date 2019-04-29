@@ -1,11 +1,13 @@
 const arr = [
-  {
-    id: 1
-  },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 }
+  { name: "user", value: 1 },
+  { name: "email", value: 33 },
+  { name: "password", value: "hihi" }
 ];
 
-const x = arr.map(item => item.id).indexOf(4);
+const x = arr.reduce((accum, current) => {
+  const key = current.name;
+  const value = current.value;
+  return { ...accum, [key]: value };
+}, {});
+
 console.log(x);

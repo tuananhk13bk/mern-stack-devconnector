@@ -1,11 +1,11 @@
 import { connect } from "react-redux";
-
+import { withRouter } from "react-router-dom";
+import { compose } from "recompose";
 import {
   changeLoginInputEmail,
   changeLoginInputPassword,
   loginUser
 } from "../actions/login/loginActions";
-
 import LoginForm from "../components/Auth/LoginForm";
 
 const mapStateToProps = state => {
@@ -24,7 +24,10 @@ const mapDispatchToProps = {
   loginUser
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  withRouter
 )(LoginForm);

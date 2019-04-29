@@ -54,14 +54,18 @@ UserSchema.statics.checkExists = function(condition) {
       isExists = true;
       return { isExists, user };
     })
-    .catch(console.log);
+    .catch(err => {
+      throw err;
+    });
 };
 
 UserSchema.statics.comparePassword = function(password, password2) {
   return bcrypt
     .compare(password, password2)
     .then(isMatch => isMatch)
-    .catch(console.log);
+    .catch(err => {
+      throw err;
+    });
 };
 
 module.exports = User = mongoose.model("users", UserSchema);

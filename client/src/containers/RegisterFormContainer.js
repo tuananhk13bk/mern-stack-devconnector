@@ -1,13 +1,14 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { withRouter } from "react-router-dom";
+import { compose } from "recompose";
 
 import {
   changeRegisterInputName,
   changeRegisterInputEmail,
   changeRegisterInputPassword,
   changeRegisterInputPassword2,
-  registerUser,
-  clearAllRegisterStates
+  registerUser
 } from "../actions/register/registerActions";
 
 import RegisterForm from "../components/Auth/RegisterForm";
@@ -32,14 +33,16 @@ const mapDispatchToProps = dispatch => {
       changeRegisterInputEmail,
       changeRegisterInputPassword,
       changeRegisterInputPassword2,
-      registerUser,
-      clearAllRegisterStates
+      registerUser
     },
     dispatch
   );
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  withRouter
 )(RegisterForm);

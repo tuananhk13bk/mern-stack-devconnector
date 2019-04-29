@@ -3,8 +3,7 @@ import Spinner from "../Spinner";
 import { Link, withRouter } from "react-router-dom";
 
 import ProfileManagement from "./ProfileManagement";
-import ExperienceTable from "./ExperienceTable";
-import EducationTable from "./EducationTable";
+import DashBoardTable from "./DashBoardTable";
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -48,15 +47,18 @@ class Dashboard extends Component {
             onEditProfileClick={this.onEditProfileClick}
             onDeleteClick={this.onDeleteClick}
           />
-          <ExperienceTable
-            experience={currentUserProfile.experience}
-            deleteExperience={deleteExperience}
+          <DashBoardTable
+            title="Add Experience"
+            tableHeadersList={["Company", "Title", "Years", ""]}
+            rowItemsList={currentUserProfile.experience}
+            handleOnDelete={deleteExperience}
           />
-          <EducationTable
-            education={currentUserProfile.education}
-            deleteEducation={deleteEducation}
+          <DashBoardTable
+            title="Add Education"
+            tableHeadersList={["School", "Degree", "Years", ""]}
+            rowItemsList={currentUserProfile.education}
+            handleOnDelete={deleteEducation}
           />
-          {/* TODO: add exp and edu */}
         </div>
       );
     }
