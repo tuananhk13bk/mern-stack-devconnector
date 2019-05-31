@@ -75,7 +75,7 @@ const postLoginUser = (req, res) => {
           // Sign Token
           jwt.sign(
             payload,
-            keys.secretOrKey,
+            keys.secretOrKey + "123",
             { expiresIn: 3600 },
             (err, token) => {
               res.json({
